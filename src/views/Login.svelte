@@ -39,7 +39,7 @@
 
     section.form-container {
         padding: 20px;
-        width: 500px;
+        width: 100%;
         margin: auto;
         form {
             div.input-form {
@@ -65,12 +65,12 @@
                     margin: 0;
 
                     &.validation-hint {
-                        color: red;
+                        color: #ff0040;
                         padding: 6px 0;
                     }
 
                     &.field-danger {
-                        border-color: red;
+                        border-color: #ff0040;
                     }
 
                     &.field-success {
@@ -78,6 +78,12 @@
                     }
                 }
             }
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        section.form-container {
+            width: 500px;
         }
     }
 </style>
