@@ -13,9 +13,9 @@ export default {
         component: Lorem,
         conditions: [
             async (detail) => {
-                return new Promise( (resolve, reject) => {
+                return new Promise((resolve, reject) => {
                     Global.name.set('Searching...');
-                    fetch('https://jsonplaceholder.typicode.com/todos/1').then( async (response) => {
+                    fetch('https://jsonplaceholder.typicode.com/todos/1').then(async (response) => {
                         const data = await response.json();
                         if (data.userId) {
                             Global.name.set(data.title);
