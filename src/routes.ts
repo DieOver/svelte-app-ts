@@ -8,8 +8,8 @@ import { Global } from './services/Global';
 import { replace } from "svelte-spa-router";
 
 export default {
-    '/': Login,
-    '/not_permitted': NotPermitted,
+    '/': wrap({ component: Login }),
+    '/not_permitted': wrap({ component: NotPermitted }),
     '/home': wrap({
         component: Home,
         conditions: [
@@ -26,5 +26,5 @@ export default {
             })
         ]
     }),
-    '*': NotFound
+    '*': wrap({ component: NotFound })
 };
