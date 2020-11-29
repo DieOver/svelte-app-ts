@@ -10,8 +10,8 @@
         emailValidator()
     );
 
-    let email: string = "";
-    let password: string = "";
+    let email: string = "admin@admin.com";
+    let password: string = "admin";
 
     let loginError: boolean = false;
 
