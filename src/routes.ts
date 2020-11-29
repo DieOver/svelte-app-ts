@@ -1,35 +1,36 @@
 import { wrap } from 'svelte-spa-router/wrap';
 import Home from './views/Home.svelte';
-import Lorem from './views/Lorem.svelte';
+import Login from './views/Login.svelte';
 import NotFound from './views/NotFound.svelte';
+import NotPermitted from './views/NotPermitted.svelte';
 
 import { Global } from './services/Global';
+import { replace } from "svelte-spa-router";
 
 export default {
     '/': wrap({
-        component: Home,
+        component: Login,
     }),
-    '/lorem/:repeat': wrap({
-        component: Lorem,
+    '/home': wrap({
+        component: Home,
         conditions: [
-            async (detail) => {
-                return new Promise((resolve, reject) => {
-                    Global.name.set('Searching...');
-                    fetch('https://jsonplaceholder.typicode.com/todos/1').then(async (response) => {
-                        const data = await response.json();
-                        if (data.userId) {
-                            Global.name.set(data.title);
-                            resolve(true);
-                        } else {
+            async () => {
+                return new Promise( async (resolve) => {
+                    Global.loadingPage.set(true);
+                    setTimeout(() => {
+                        Global.loadingPage.set(false);
+                        if (!Global.isLoggedIn) {
                             resolve(false);
+                            replace('/not_permitted');
                         }
-                    }, (error) => {
-                        console.error('Falha ao buscar usuário:', error);
-                        resolve(false);
-                    });
+                        resolve(true);
+                    }, 2000);
                 });
             }
         ]
+    }),
+    '/not_permitted': wrap({
+        component: NotPermitted
     }),
     '*': wrap({
         component: NotFound
