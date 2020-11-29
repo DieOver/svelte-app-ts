@@ -1,4 +1,4 @@
-<style>
+<style type="text/scss">
 	h1 {
 		color: #ff0040;
 		text-transform: uppercase;

@@ -27,23 +27,23 @@
     }
 </script>
 
-<style>
+<style type="text/scss">
     input {
         outline: none;
         border-width: 2px;
-    }
 
-    .validation-hint {
-        color: red;
-        padding: 6px 0;
-    }
+        &.validation-hint {
+            color: red;
+            padding: 6px 0;
+        }
 
-    .field-danger {
-        border-color: red;
-    }
+        &.field-danger {
+            border-color: red;
+        }
 
-    .field-success {
-        border-color: green;
+        &.field-success {
+            border-color: green;
+        }
     }
 </style>
 

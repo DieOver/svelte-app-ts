@@ -15,19 +15,21 @@
     <section id="loadingPage">Carregando...</section>
 {/if}
 
-<style>
-	section#loadingPage {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vw;
-		background-color: rgba(0, 0, 0, 0.2);
-		
-		align-items: center;
-		justify-content: center;
-		display: flex;
-		font-weight: bold;
-		font-size: 40px;
+<style type="text/scss">
+	section {
+		#loadingPage {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vw;
+			background-color: rgba(0, 0, 0, 0.2);
+			
+			align-items: center;
+			justify-content: center;
+			display: flex;
+			font-weight: bold;
+			font-size: 40px;
+		}
 	}
 </style>
