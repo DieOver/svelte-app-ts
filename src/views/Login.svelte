@@ -1,35 +1,80 @@
 <script lang="ts">
-    import { Global } from '../services/Global';
+    import { Global } from "../services/Global";
     import { replace } from "svelte-spa-router";
 
-    let username: string = '';
-    let password: string = '';
+    import { emailValidator, requiredValidator } from "../validators/validators.js";
+    import { createFieldValidator } from "../validators/validation.js";
+
+    const [validityEmail, validateEmail]: any = createFieldValidator(
+        requiredValidator(),
+        emailValidator()
+    );
+
+    let email: string = "";
+    let password: string = "";
+
+    let loginError: boolean = false;
 
     function onSubmit(ev: Event) {
         ev.preventDefault();
-        console.log('onSubmit', ev);
-        if (username === 'admin' && password === 'admin') {
-            console.log('Correct!!!');
+        if (email === "admin@admin.com" && password === "admin") {
             Global.isLoggedIn = true;
+            loginError = false;
             replace("/home");
         } else {
-            console.log('asrasrasras');
+            loginError = true;
         }
     }
 </script>
 
+<style>
+    input {
+        outline: none;
+        border-width: 2px;
+    }
+
+    .validation-hint {
+        color: red;
+        padding: 6px 0;
+    }
+
+    .field-danger {
+        border-color: red;
+    }
+
+    .field-success {
+        border-color: green;
+    }
+</style>
+
 <h1>Faça o Login</h1>
+
+{#if loginError}
+    <p>Usuário ou Senha inválido.</p>
+{/if}
 
 <form novalidate on:submit={onSubmit}>
     <div>
-        <label for="username">Username</label>
-        <input name="username" id="username" type="text" bind:value={username} />
+        <label for="email">Email</label>
+        <input
+            name="email"
+            id="email"
+            type="email"
+            bind:value={email}
+            class:field-danger={$validityEmail.dirty && !$validityEmail.valid}
+            class:field-success={$validityEmail.valid}
+            use:validateEmail={email} />
+        {#if $validityEmail.dirty && !$validityEmail.valid}
+            <span class="validation-hint">{$validityEmail.message}</span>
+        {/if}
     </div>
     <div>
         <label for="password">Senha</label>
-        <input name="password" id="password" type="password" bind:value={password} />
+        <input
+            name="password"
+            id="password"
+            type="password"
+            bind:value={password} />
     </div>
-    <div>
-        <button>LOGAR</button>
-    </div>
+    <div><button disabled={!$validityEmail.valid}>LOGAR</button></div>
 </form>
