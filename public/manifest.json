@@ -1,6 +1,12 @@
 {
     "name": "SVELTE-PWA",
     "short_name": "SVELTE-PWA",
+    "theme_color": "#ff0040",
+    "background_color": "#ff0040",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/index.html",
+    "splash_pages": null,
     "icons": [
         {
             "src": "/images/icons/icon-128x128.png",
@@ -32,9 +38,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#ff0040",
-    "theme_color": "#ff0040"
+    ]
 }

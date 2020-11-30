@@ -6,12 +6,13 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import path from 'path';
+import copy from "rollup-plugin-copy-assets";
 
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
 	let server;
-	
+
 	function toExit() {
 		if (server) server.kill(0);
 	}
@@ -50,6 +51,9 @@ export default {
 			preprocess: sveltePreprocess({
 				includePaths: [path.join(__dirname, 'src/**/*')]
 			}),
+		}),
+		copy({
+			assets: []
 		}),
 
 		// If you have external dependencies installed from

@@ -88,7 +88,7 @@
     }
 </style>
 
-<h1 class="text-align-center">Faça o Login</h1>
+<h1 class="text-align-center">Faça o Login !!</h1>
 
 {#if loginError}
     <p class="text-align-center">Usuário ou Senha inválido.</p>
